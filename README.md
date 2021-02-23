@@ -75,19 +75,19 @@ Below is presented an example of config file containing all the adjustable param
   },
   "net": {
     "gen": {
-      "in_channels": 2,                            > Number of input channels of Generator (img + mask). Set to 2 for grayscale and 4 for RBG images.
-      "out_channels": 1,                           > Number of output channels of Generator. Set to 1 for grayscale and 3 for RBG images.
-      "lat_channels": 32,                          > Number of channels after the first convolution.
-      "activation": "lrelu",                       > Activation function to use. Supported: 'relu' -> ReLU, 'lrelu' -> LeakyReLU, 'prelu' -> PReLU, 'selu' -> SELU, 'tanh' -> Hyperbolic tangent, 'sigmoid' -> sigmoid, 'none' -> No activation used
-      "norm": true,                                > Whether to use BatchNorm layers.
-      "padding_mode": "reflect",                   > Padding mode of features map (see pytorch for valid entries).
-      "bias": true,                                > Whether to use a bias term in convolutions.
-      "upsample_mode": "nearest",                  > Interpolation mode in upsampling layer. (see pytorch.nn.Upsample for valid entries).
-      "return_coarse": true                        > Whether to return the intermediate reconstruction. It should be set to True!
+      "in_channels": 2,                           > Number of input channels of Generator (img + mask). Set to 2 for grayscale and 4 for RBG images.
+      "out_channels": 1,                          > Number of output channels of Generator. Set to 1 for grayscale and 3 for RBG images.
+      "lat_channels": 32,                         > Number of channels after the first convolution.
+      "activation": "lrelu",                      > Activation function to use. Supported: 'relu' -> ReLU, 'lrelu' -> LeakyReLU, 'prelu' -> PReLU, 'selu' -> SELU, 'tanh' -> Hyperbolic tangent, 'sigmoid' -> sigmoid, 'none' -> No activation used
+      "norm": true,                               > Whether to use BatchNorm layers.
+      "padding_mode": "reflect",                  > Padding mode of features map (see pytorch for valid entries).
+      "bias": true,                               > Whether to use a bias term in convolutions.
+      "upsample_mode": "nearest",                 > Interpolation mode in upsampling layer. (see pytorch.nn.Upsample for valid entries).
+      "return_coarse": true                       > Whether to return the intermediate reconstruction. It should be set to True!
     },
     "dis": {
-      "in_channels": 2,                            > Number of input channels of Discriminator (img + mask). Set to 2 for grayscale and 4 for RBG images.
-      "out_channels": [                            > Output channels of the different convolution on the discriminator. It defines the number of convolution present.
+      "in_channels": 2,                           > Number of input channels of Discriminator (img + mask). Set to 2 for grayscale and 4 for RBG images.
+      "out_channels": [                           > Output channels of the different convolution on the discriminator. It defines the number of convolution present.
         64,
         128,
         256,
@@ -95,40 +95,40 @@ Below is presented an example of config file containing all the adjustable param
         256,
         256
       ],
-      "kernel_size": 5,                            > Kernel size to use in discriminator convolutions
-      "stride": 2,                                 > Stride to use in discriminator convolutions
-      "bias": true,                                > Whether to add a bias term in discriminator convolutions
-      "activation": "lrelu",                       > Activation function to use. Supported: 'relu' -> ReLU, 'lrelu' -> LeakyReLU, 'prelu' -> PReLU, 'selu' -> SELU, 'tanh' -> Hyperbolic tangent, 'sigmoid' -> sigmoid, 'none' -> No activation used
-      "norm": false,                               > whether to use BatchNorm layers.
-      "padding_mode": "reflect",                   > Padding mode of features map (see pytorch for valid entries).
-      "sn": true,                                  > Whether convolution are spectrally normalized.
-      "self_attention": true                       > Whether to add a self-attention layer before the last convolution.
+      "kernel_size": 5,                           > Kernel size to use in discriminator convolutions
+      "stride": 2,                                > Stride to use in discriminator convolutions
+      "bias": true,                               > Whether to add a bias term in discriminator convolution
+      "activation": "lrelu",                      > Activation function to use. Supported: 'relu' -> ReLU, 'lrelu' -> LeakyReLU, 'prelu' -> PReLU, 'selu' -> SELU, 'tanh' -> Hyperbolic tangent, 'sigmoid' -> sigmoid, 'none' -> No activation used
+      "norm": false,                              > whether to use BatchNorm layers.
+      "padding_mode": "reflect",                  > Padding mode of features map (see pytorch for valid entries).
+      "sn": true,                                 > Whether convolution are spectrally normalized.
+      "self_attention": true                      > Whether to add a self-attention layer before the last convolution.
     }
   },
   "train": {
     "model_param": {
-      "n_epoch": 100,                              > Number of epochs of training.
-      "batch_size": 7,                             > Batch size
-      "lr_g": 0.0001,                              > Learning rate for the generator optimization.
-      "lr_d": 0.0004,                              > Learning rate for the discriminator optimization.
-      "lr_scheduler": "ExponentialLR",             > Learning rate scheduler to use. Must be one from torch.optim.scheduler.
-      "lr_scheduler_kwargs": {                     > Kwargs for the learning rate scheduler.
+      "n_epoch": 100,                             > Number of epochs of training.
+      "batch_size": 7,                            > Batch size
+      "lr_g": 0.0001,                             > Learning rate for the generator optimization.
+      "lr_d": 0.0004,                             > Learning rate for the discriminator optimization.
+      "lr_scheduler": "ExponentialLR",            > Learning rate scheduler to use. Must be one from torch.optim.scheduler.
+      "lr_scheduler_kwargs": {                    > Kwargs for the learning rate scheduler.
         "gamma": 0.97
       },
-      "gammaL1": 0.995,                            > Gamma hyper-parameter for the Discounted L1-Loss.
-      "lambda_L1": 1,                              > Weight of Discounted L1 loss in generator loss.
-      "lambda_gan": 0.05,                          > Weight of GAN loss in generator loss.
-      "weight_decay": 0.000001,                    > Weight of L2 regularization on models weights.
-      "num_workers": 12,                           > Number of CPU workers to use.
-      "checkpoint_freq": 1                         > Frequency of checkpoint saving in term of epoch: checkpoint saved every  i epochs.
+      "gammaL1": 0.995,                           > Gamma hyper-parameter for the Discounted L1-Loss.
+      "lambda_L1": 1,                             > Weight of Discounted L1 loss in generator loss.
+      "lambda_gan": 0.05,                         > Weight of GAN loss in generator loss.
+      "weight_decay": 0.000001,                   > Weight of L2 regularization on models weights.
+      "num_workers": 12,                          > Number of CPU workers to use.
+      "checkpoint_freq": 1                        > Frequency of checkpoint saving in term of epoch: checkpoint saved every  i epochs.
     },
-    "model_path_to_load": {                        > Potential path to load an existing model. It must point to a valid state_dict. If null, no model are loaded
+    "model_path_to_load": {                       > Potential path to load an existing model. It must point to a valid state_dict. If null, no model are loaded
       "gen": null,
       "dis": null
     },
-    "validate_epoch": true,                        > Whether to validate model ona fixed dataset.
-    "valid_save_freq": 1,                          > Frequency of validation results saving.
-    "stabilization_rep": 5                         > Number of epoch to perform after training to stabilize BatchNorm Layers. Note that the model is not trained and only the BatchNorm parameters are updated.
+    "validate_epoch": true,                       > Whether to validate model ona fixed dataset.
+    "valid_save_freq": 1,                         > Frequency of validation results saving.
+    "stabilization_rep": 5                        > Number of epoch to perform after training to stabilize BatchNorm Layers. Note that the model is not trained and only the BatchNorm parameters are updated.
   }
 }
 ```
