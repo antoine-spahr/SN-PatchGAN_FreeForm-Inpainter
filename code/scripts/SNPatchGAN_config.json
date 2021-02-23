@@ -1,0 +1,125 @@
+{
+  "exp_name": "SNPatchGAN",
+  "path": {
+    "data_train_path": "../../../data/train_data/",
+    "data_valid_path": "../../../data/eval_data/",
+    "output": "../../../outputs/inpainting/"
+  },
+  "device": "cuda:0",
+  "seed": 42,
+  "print_progress": true,
+  "dataset": {
+    "n_sample": -1,
+    "size": 256,
+    "augmentation": {
+      "train": {
+        "Translate": {
+          "low": -0.05,
+          "high": 0.05,
+          "mode": "constant"
+        },
+        "Rotate": {
+          "low": -10,
+          "high": 10,
+          "mode": "constant"
+        },
+        "Scale": {
+          "low": 0.95,
+          "high": 1.05,
+          "mode": "constant"
+        },
+        "HFlip": {
+          "p": 0.5
+        }
+      },
+      "eval": {}
+    },
+    "mask": {
+      "n_draw": [
+        1,
+        4
+      ],
+      "vertex": [
+        15,
+        30
+      ],
+      "brush_width": [
+        15,
+        25
+      ],
+      "angle": [
+        0.5,
+        2
+      ],
+      "length": [
+        15,
+        50
+      ],
+      "n_salt_pepper": [
+        0,
+        15
+      ],
+      "salt_peper_radius": [
+        1,
+        6
+      ]
+    }
+  },
+  "net": {
+    "gen": {
+      "in_channels": 2,
+      "out_channels": 1,
+      "lat_channels": 32,
+      "activation": "lrelu",
+      "norm": true,
+      "padding_mode": "reflect",
+      "bias": true,
+      "upsample_mode": "nearest",
+      "return_coarse": true
+    },
+    "dis": {
+      "in_channels": 2,
+      "out_channels": [
+        64,
+        128,
+        256,
+        256,
+        256,
+        256
+      ],
+      "kernel_size": 5,
+      "stride": 2,
+      "bias": true,
+      "activation": "lrelu",
+      "norm": false,
+      "padding_mode": "reflect",
+      "sn": true,
+      "self_attention": true
+    }
+  },
+  "train": {
+    "model_param": {
+      "n_epoch": 100,
+      "batch_size": 7,
+      "lr_g": 0.0001,
+      "lr_d": 0.0004,
+      "lr_scheduler": "ExponentialLR",
+      "lr_scheduler_kwargs": {
+        "gamma": 0.97
+      },
+      "gammaL1": 0.995,
+      "lambda_L1": 1,
+      "lambda_gan": 0.05,
+      "weight_decay": 0.000001,
+      "num_workers": 12,
+      "checkpoint_freq": 1
+    },
+    "model_path_to_load": {
+      "gen": null,
+      "dis": null
+    },
+    "validate_epoch": true,
+    "valid_save_freq": 1,
+    "stabilization_rep": 5
+  }
+}
