@@ -8,7 +8,7 @@ date : 17.11.2020
 TO DO :
 """
 import sys
-sys.path.append('../../')
+sys.path.append('../')
 import click
 import os
 import logging
@@ -17,6 +17,7 @@ import random
 import torch
 import torch.cuda
 import numpy as np
+from glob import glob
 #import pandas as pd
 
 from src.dataset.datasets import InpaintDataset, ImgMaskDataset
@@ -77,8 +78,8 @@ def main(config_path):
 
     # load small valid subset and make dataset
     if cfg.train.validate_epoch:
-        eval_img_fn = glob(os.path.join(cfg.path.data_eval_path, 'img/*'))
-        eval_mask_fn = glob(os.path.join(cfg.path.data_eval_path, 'mask/*'))
+        eval_img_fn = glob(os.path.join(cfg.path.data_valid_path, 'img/*'))
+        eval_mask_fn = glob(os.path.join(cfg.path.data_valid_path, 'mask/*'))
 
         valid_dataset = ImgMaskDataset(eval_img_fn, eval_mask_fn,
                             augmentation_transform=[getattr(tf, tf_name)(**tf_kwargs) for tf_name, tf_kwargs in cfg.dataset.augmentation.eval.items()],

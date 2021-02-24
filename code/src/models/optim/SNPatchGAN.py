@@ -264,6 +264,7 @@ class SNPatchGAN:
             self.generator.eval()
             # validate data by batch
             l1_loss = 0.0
+            idx = 1
             for b, data in enumerate(valid_loader):
                 im_v, mask_v = data
                 im_v = im_v.to(self.device).float()
@@ -280,10 +281,11 @@ class SNPatchGAN:
                 if save_path:
                     for i in range(im_inpaint.shape[0]):
                         arr = im_inpaint[i].permute(1,2,0).squeeze().cpu().numpy()
-                        io.imsave(os.path.join(save_path, f'valid_im{idx[i]}_ep{epoch}.png'), img_as_ubyte(arr))
+                        io.imsave(os.path.join(save_path, f'valid_im{idx}_ep{epoch}.png'), img_as_ubyte(arr))
 
                         arr = coarse[i].permute(1,2,0).squeeze().cpu().numpy()
-                        io.imsave(os.path.join(save_path, f'valid_im{idx[i]}_coarse_ep{epoch}.png'), img_as_ubyte(arr))
+                        io.imsave(os.path.join(save_path, f'valid_im{idx}_coarse_ep{epoch}.png'), img_as_ubyte(arr))
+                        idx += 1
 
                 print_progessbar(b, n_batch, Name='Valid Batch', Size=40, erase=True)
 

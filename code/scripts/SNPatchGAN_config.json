@@ -1,9 +1,9 @@
 {
   "exp_name": "SNPatchGAN",
   "path": {
-    "data_train_path": "../../../data/train_data/",
-    "data_valid_path": "../../../data/eval_data/",
-    "output": "../../../outputs/inpainting/"
+    "data_train_path": "../../data/train_data/",
+    "data_valid_path": "../../data/eval_data/",
+    "output": "../../outputs/"
   },
   "device": "cuda:0",
   "seed": 42,
