@@ -1,4 +1,4 @@
-# SN-PatchGAN - Free Form Inpainter
+# SN-PatchGAN - Free Form Inpainter 🖌
 
 Pytorch implementation of the SN-PatchGAN inpainter.
 
@@ -137,6 +137,25 @@ Below is presented an example of config file containing all the adjustable param
 To train an SN-PatchGAN with a given config file run the following:
 ```
 python3 SNPatchGAN_scripts.py SNPatchGAN_config.json
+```
+
+### Output Structure
+
+```
+SNPatchGAN_EXP-NAME/                      > Main Result Folder (same name as 'exp_name' entry in config.json) 
+├── Checkpoint.pt                         > Training Checkpoint to potentially recover training 
+├── config.json                           > copy of config file with all the settings used 
+├── discriminator.pt                      > State Dictionnary of the Trained Discriminator 
+├── generator.pt                          > State Dictionnary of the Trained Generator 
+├── log.txt                               > LOG of training
+├── outputs.json                          > Training outputs : the Losses evolution at every epoch
+└── valid_results                         > Folder containing intermediate validation on fixed mask. Both Coarse inpainting and  
+    ├── valid_im1_coarse_ep100.png          Fine inpainting are saved respectively as 'valid_im{idx}_coarse_ep{n}.png' and 'valid_im{idx}_ep{n}.png' 
+    ├── valid_im1_coarse_ep150.png
+    ├── valid_im1_coarse_ep50.png
+    ├── valid_im1_ep100.png
+    ├── valid_im1_ep150.png
+    └── valid_im1_ep50.png
 ```
 
 ### Gallery
