@@ -150,12 +150,14 @@ SNPatchGAN_EXP-NAME/                      > Main Result Folder (same name as 'ex
 ├── log.txt                               > LOG of training
 ├── outputs.json                          > Training outputs : the Losses evolution at every epoch
 └── valid_results                         > Folder containing intermediate validation on fixed mask. Both Coarse inpainting and  
-    ├── valid_im1_coarse_ep100.png          Fine inpainting are saved respectively as 'valid_im{idx}_coarse_ep{n}.png' and 'valid_im{idx}_ep{n}.png' 
+    ├── valid_im1_coarse_ep50.png           Fine inpainting are saved respectively as 'valid_im{idx}_coarse_ep{n}.png' and 'valid_im{idx}_ep{n}.png' 
+    ├── valid_im1_coarse_ep100.png
     ├── valid_im1_coarse_ep150.png
-    ├── valid_im1_coarse_ep50.png
+            ...
+    ├── valid_im1_ep50.png
     ├── valid_im1_ep100.png
-    ├── valid_im1_ep150.png
-    └── valid_im1_ep50.png
+    └── valid_im1_ep150.png
+            ...
 ```
 
 ### Gallery
