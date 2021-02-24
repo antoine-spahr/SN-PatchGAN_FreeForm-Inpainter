@@ -24,7 +24,7 @@ import src.dataset.transforms as tf
 from src.models.networks.InpaintingNetwork import PatchDiscriminator, SAGatedGenerator
 from src.models.optim.SNPatchGAN import SNPatchGAN
 
-from src.utils.python_utils import AttrDict
+from src.utils.utils import AttrDict
 
 @click.command()
 @click.argument('config_path', type=click.Path(exists=True))
